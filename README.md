@@ -56,7 +56,7 @@ address​ and a latLng​ position of the place, this endpoint should save the 
 different table/document and return ETA (estimated time of arrival) based on user
 location and restaurant location (transport media being a motorcycle), this time should
 have in count traffic at the moment, also when a order is triggered a message needs to
-be created and queue in ActiveMQ server 1 message for the notification and another for
+be created and queue in ActiveMQ server (or any messaging server you prefer) 1 message for the notification and another for
 the order</li>
 </ul>
 
@@ -65,5 +65,5 @@ the order</li>
 <li> NodeJS , you can use express or any framework you like </li>
 <li> Postgress DB is desired but you can use any you feel more useful for the exercise </li>
 <li> You can use google maps or any API or any you feel more convenient </li>
-<li> ActiveMQ </li>
+<li> ActiveMQ or any messaging server prferred </li>
 
