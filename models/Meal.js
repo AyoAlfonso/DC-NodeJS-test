@@ -9,8 +9,8 @@ module.exports = function(sequelize, DataTypes) {
       },
     name: {
       type: DataTypes.STRING(50),
-      allowNull: false
-      unique: true
+      allowNull: false,
+      unique: true,
       validate: {
         isAlpha: true,
      },
@@ -19,14 +19,14 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.TEXT
       },
     price: {
-        allowNull: false
-        type: DataTypes.DECIMAL(10,2)
+        allowNull: false,
+        type: DataTypes.DECIMAL(10,2) ,
         validate: {
           isDecimal: true,
         }
     },
     subtotal: {
-        type: DataTypes.DECIMAL(10,2)
+        type: DataTypes.DECIMAL(10,2) ,
         validate: {
           isDecimal: true,
         }

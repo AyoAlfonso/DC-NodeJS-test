@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
            },
        },
        commercial_name: {
-        allowNull: false,
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
             notEmpty: true,
        },
@@ -22,23 +22,23 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING
      },
       commercial_email: {
-        allowNull: false,
         type: DataTypes.STRING(120),
+        allowNull: false,
         unique: true,
         validate: {
           isEmail: true,
         },
       },
       admin_number: {
-        allowNull: false,
         type: DataTypes.STRING(100),
+        allowNull: false,
         validate: {
           isNumeric: true,
         },
      },
      address: {
-        allowNull: false,
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
             notEmpty: true,
        },
@@ -49,5 +49,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   )
   return Restaurant
-//   var point = { type: 'Point', coordinates: [39.807222,-76.984722]};
+
 }

@@ -1,4 +1,4 @@
-"use strict";
+ "use strict";
 
 module.exports = function(sequelize, DataTypes) {
   var Review = sequelize.define('review', {
@@ -9,8 +9,8 @@ module.exports = function(sequelize, DataTypes) {
       },
     restaurant_id: {
       type: DataTypes.INTEGER(4),
-      allowNull: false
-      unique: true
+      allowNull: false,
+      unique: true,
       validate: {
         isInt: true,
      },
@@ -19,11 +19,11 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.TEXT
       },
       rating : {
-        allowNull: false
-        type: DataTypes.INTEGER(2)
+        type: DataTypes.INTEGER(2),
+        allowNull: false,
       },
       name : { //THIS IS THE NAME OF THE CUSTOMER REVIEWING THE RESTAURANT
-        allowNull: false
+        allowNull: false,
         type: DataTypes.STRING(120)
       },
    }

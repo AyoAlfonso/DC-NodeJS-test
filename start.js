@@ -2,31 +2,32 @@
 
 require('dotenv').config();
 const app = require('./app');
-const models = require("./models");
+const models = require('./models');
 
 models.meal.belongsTo(models.restaurant);
 models.review.belongsTo(models.restaurant);
 models.order.belongsTo(models.restaurant);
 
 models.restaurant.hasMany(models.order);
-models.restaurant.hasMany(models.review);
 models.restaurant.hasMany(models.meal);
 
+models.restaurant.hasMany(models.review);
 models.order.hasOne(models.orderdetail);
 
-models.sequelize.sync().then(function () {
-  server.listen(port); 
-  console.log("Server started on port: ",port);
-  server.on('error', onError);
-  server.on('listening', onListening);
-});
+try {
+    console.log("Here at sequelize sync")
+    models.sequelize.sync().then(function (results) {
+        const server = app.listen(app.get('port'), () => {
+            console.log(`Our app is running at this PORT ${app.get('port')} 🔥`)
+        });
+        server.on('error', onError);
+    })
+} catch(error){
+    console.log(' Hi 🤨 '+ error.message)
+    console.error(' Hi 🤨 '+ error.message  );
+}
 
-const server = app.listen(app.get('port'), () => {
-    console.log(`Our app is running at this PORT ${app.get('port')} 🔥`)
-  });
-
-
-server.on('error', (error)=>{
+function onError(error){
     let port =  app.get('port')
        if (error.syscall !== 'listen') {
          throw error;
@@ -48,9 +49,4 @@ server.on('error', (error)=>{
          default:
            throw error;
        }
-     })
-
-const server = app.listen(app.get('port'), () => {
-    console.log(`Our app is running -→ PORT ${app.get('port')}`)
-});
-  
+     }
