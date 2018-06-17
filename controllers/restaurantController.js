@@ -5,7 +5,6 @@ const models = require('../models')
 const weightedMean = require('../handlers/ratings'),
       Promise = require('bluebird');
 
-
 /**
  *  @description Returns a lists of restaurants; filter according to their ratings
  * @param {object} req.query.rating
@@ -53,12 +52,12 @@ exports.listRestaurants = function (req, res) {
           }
         )
         function getMeanAverage(weightedArray){
-            let weightedValue;
+            let weightedValue=0;
             for(i=0;i<weightedArray.length; i++){
-                let weight = weightedMean(numbers[i])
-               weightedValue = numbers[i] * weight
+                let weight = weightedMean(weightedArray[i])
+               weightedValue = weightedArray[i] * weight
                }
-              return weightedValue
+              return (10*(weightedValue/weightedArray.length).toPrecision(2))
            }
     });
         return res.status(200).send({code: 200, restaurants: restaurants});
@@ -106,7 +105,7 @@ let location = { type: 'Point', coordinates: geopoints };
 
   /**
      * @description This function deletes a specified restaurant by its UNIQUE email.
-     * @param {rating} req.body
+     * @param {email} req.body
      * @param {*} res 
      */
 

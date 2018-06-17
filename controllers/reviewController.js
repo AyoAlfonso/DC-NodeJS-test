@@ -12,7 +12,7 @@ const models = require('../models')
         let restaurantId = req.params.restaurantId
         let rating  =  req.body.rating
         let review = req.body.review
-        let name = req.body.name
+        let name = req.body.restaurantName
 
         if (!rating){
             return res.status(400).json({
@@ -22,7 +22,7 @@ const models = require('../models')
         }
 
         let query = {
-            restaurant.id: restaurantId,
+            restaurant_id: restaurantId,
             review: review,
             rating: parseInt(rating),
             name: name,

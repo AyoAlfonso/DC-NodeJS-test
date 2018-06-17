@@ -9,14 +9,14 @@ module.exports = function(sequelize, DataTypes) {
       },
     restaurant_id: {
       type: DataTypes.INTEGER(4),
-      allowNull: false
-      unique: true
+      allowNull: false,
+      unique: true,
       validate: {
         isAlpha: true,
      },
     },
     total: {
-        type: DataTypes.DECIMAL(10,2)
+        type: DataTypes.DECIMAL(10,2),
         validate: {
           isDecimal: true,
         }
@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING(30),
      },
      location: {
-        allowNull: false
+        allowNull: false,
         type: Sequelize.GEOMETRY('POINT'),
      },
    }

@@ -1,26 +1,33 @@
 'use strict'
-/** USING "CONST" SIGNAL TO OTHER DEVELOPERS READING THIS CODE
- *  THAT THOSE OBJECTS OR VARIABLES  WILL NOT CHANGE THROUGHOUT THE REST OF THE CODE
+/** MY PERSONAL STYLE IS TO USE "CONST" SIGNAL TO OTHER DEVELOPERS READING THIS CODE
+ *  THAT THOSE OBJECTS OR VARIABLES SHOULD NOT CHANGE THROUGHOUT THE REST OF THE CODE
  *  */
 const express = require('express');
 const router = express.Router();
 const restaurantController = require('../controllers/restaurantController');
-const reviewContoller = require('../controllers/reviewController');
+const reviewController = require('../controllers/reviewController');
+const orderController = require('../controllers/orderController');
+
+
+/**
+ * Resturant API
+*/
 
 router.post('/add-restaurant', restaurantController.addRestaurant);
-
-/**
- * State the range of reviews you are expecting in the body
-*/
 router.get('/list', restaurantController.listRestaurants);
-router.post('/:restaurantId/delete', restaurantController.deleteRestaurant);
-router.post('/:restaurantId/edit', restaurantController.updateRestaurant);
-router.post('/:restaurantId/rate', reviewtController.rate);
+
+router.post('restuarants/:restaurantId/delete', restaurantController.deleteRestaurant);
+router.post('restuarants/:restaurantId/edit', restaurantController.updateRestaurant);
+router.post('restuarants/:restaurantId/rate', reviewController.rate);
 
 /**
- * Returns ETA based on custumer location
+ * Unique feature: Returns ETA based on custumer location
 */
-router.post('/new-order', userContoller.createOrder);
-router.post('/cancel-order', userContoller.cancelOrder);
+router.post('/new-order', orderController.createOrder);
+
+/*
+NOT REQUIRED BY DOCUMENTATION
+*/
+router.post('/cancel-order', orderContoller.cancelOrder);
 
 module.exports = router

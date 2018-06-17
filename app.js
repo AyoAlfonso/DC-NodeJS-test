@@ -10,10 +10,10 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 /*
-Confirms every http request into https when we are in PRODUCTION
+Confirms every http request to our API is forced into an https connection when we are in PRODUCTION
 */
 app.use('*', (req,res,next)=> {
     let status = 302;

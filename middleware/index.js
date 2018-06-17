@@ -22,13 +22,12 @@ router.get('/add-restaurant', (req, res) => {
     let isArray = Array.isArray(req.amounts) ? true:false; 
     if (isArray == true) {
         next()
-    }else {
+    } else {
         return res.status(400).json({
-            message: 'You are not sending a valid array of coordinates to this route.Please restart this process',
+            message: 'You are not sending a valid array of coordinates to this route. Please retry with appropriate details',
             code: 400
         })
     }
 })
-
 
 module.exports = router

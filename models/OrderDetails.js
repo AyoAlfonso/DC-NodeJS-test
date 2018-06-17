@@ -9,8 +9,8 @@ module.exports = function(sequelize, DataTypes) {
       },
     order_id: {
       type: DataTypes.INTEGER(4),
-      allowNull: false
-      unique: true
+      allowNull: false,
+      unique: true,
       validate: {
         isInt: true,
      },
@@ -22,14 +22,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(2),
     },
     price: {
-        allowNull: false
-        type: DataTypes.DECIMAL(10,2)
+        allowNull: false,
+        type: DataTypes.DECIMAL(10,2),
         validate: {
           isDecimal: true,
         }
     },
     subtotal: {
-        type: DataTypes.DECIMAL(10,2)
+        type: DataTypes.DECIMAL(10,2),
         validate: {
           isDecimal: true,
         }
