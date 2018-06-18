@@ -3,14 +3,13 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const apiRoutes = require('./routes/api');
-const adminRoutes = require('./routes/admin');
-const routes = require('../routes/index');
-const  = require('../handlers');
+const routes = require('./routes/index');
+const middleware = require('./middleware/index');
+const errorHandlers = require('./handlers/errorHandlers');
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 /*
 Confirms every http request to our API is forced into an https connection when we are in PRODUCTION
@@ -39,18 +38,19 @@ app.use('/', routes);
 app.use('/api', apiRoutes);
 
 app.get('/*', (req, res) => {
-  res.render('error', {
-    title: "Not found",
-  })
+  res.status(304).json({
+    message: `This routes does not exist`,
+    code: 304,
+})
 })
 
 app.set('port', normalizePort(process.env.PORT || 4500));
 
-if (app.get('env') === 'development') {
-    app.use(errorHandlers.developmentErrors);
-  }
+// if (app.get('env') === 'development') {
+//     app.use(errorHandlers.developmentErrors;
+//   }
 
-app.use(errorHandlers.productionErrors);
+// app.use(errorHandlers.productionErrors);
 
 function normalizePort(val) {
   var port = parseInt(val, 10);

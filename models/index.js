@@ -5,7 +5,7 @@ var Sequelize = require("sequelize");
 var config = require("../db/config");
 
 var sequelize = new Sequelize(config.POSTGRES_URL);
-var db        = {};
+var db = {};
 
   fs.readdirSync(__dirname)
     .filter(function(file) {

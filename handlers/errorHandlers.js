@@ -16,7 +16,7 @@ exports.resolve = function(err) {
     }));
   }else if(err.name === 'CastError'){
     errors.push(getCastErrorMessage(err));    
-  }else if(err.name === 'MongoError') {
+  }else if(err.name === 'MongoError') { //HOWEVER WE ARE NOT USING MONGODB FOR CONNECTING
     if(err.code === 11000) {
       errors.push({message: 'Duplicate index error happened.'});
     }

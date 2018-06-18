@@ -1,21 +1,22 @@
-
+'use strict'
 
 require('dotenv').config();
 const app = require('./app');
 const models = require('./models');
 
-models.meal.belongsTo(models.restaurant);
-models.review.belongsTo(models.restaurant);
-models.order.belongsTo(models.restaurant);
+/* A lot of repitition in this initilization below but its important to maintain consistency across the tables*/
+models.meal.belongsTo(models.restaurant, {foreignKey: 'restaurant_id'});
+models.review.belongsTo(models.restaurant, {foreignKey: 'restaurant_id'});
+models.order.belongsTo(models.restaurant, {foreignKey: 'restaurant_id'});
 
-models.restaurant.hasMany(models.order);
-models.restaurant.hasMany(models.meal);
+models.restaurant.hasMany(models.order, {foreignKey: 'restaurant_id'});
+models.restaurant.hasMany(models.meal, {foreignKey: 'restaurant_id'});
+models.restaurant.hasMany(models.review, {foreignKey: 'restaurant_id'});
 
-models.restaurant.hasMany(models.review);
-models.order.hasOne(models.orderdetail);
+models.order.hasOne(models.orderDetails, {foreignKey: 'order_id'});
 
 try {
-    console.log("Here at sequelize sync")
+    console.log('Here at sequelize sync')
     models.sequelize.sync().then(function (results) {
         const server = app.listen(app.get('port'), () => {
             console.log(`Our app is running at this PORT ${app.get('port')} 🔥`)

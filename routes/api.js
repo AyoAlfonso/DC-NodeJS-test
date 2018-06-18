@@ -8,26 +8,27 @@ const restaurantController = require('../controllers/restaurantController');
 const reviewController = require('../controllers/reviewController');
 const orderController = require('../controllers/orderController');
 
-
 /**
  * Resturant API
-*/
+ */
 
 router.post('/add-restaurant', restaurantController.addRestaurant);
+
 router.get('/list', restaurantController.listRestaurants);
 
-router.post('restuarants/:restaurantId/delete', restaurantController.deleteRestaurant);
-router.post('restuarants/:restaurantId/edit', restaurantController.updateRestaurant);
-router.post('restuarants/:restaurantId/rate', reviewController.rate);
+router.post('/restaurants/delete', restaurantController.deleteRestaurant);
+router.post('/restaurants/:restaurantId/edit', restaurantController.updateRestaurant);
+router.post('/restaurants/:restaurantId/rate', reviewController.rate);
 
 /**
  * Unique feature: Returns ETA based on custumer location
-*/
+ */
+
 router.post('/new-order', orderController.createOrder);
 
 /*
 NOT REQUIRED BY DOCUMENTATION
 */
-router.post('/cancel-order', orderContoller.cancelOrder);
+//router.post('/cancel-order', orderController.cancelOrder);
 
 module.exports = router

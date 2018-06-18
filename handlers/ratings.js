@@ -4,7 +4,7 @@ exports.findWeightedMean = (num) => {
 /**
  *  @description OUR ADHOC STANDARD FOR CALCULATING REVIEWS
  */
-    ratings = {
+   let ratings = {
         1: 0.1,
         2: 0.3,
         3: 0.5,
